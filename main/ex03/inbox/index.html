@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MailTrack.io Javascript Test</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mailtrack.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>MailTrack Technical test!</h1>
+            </div>
+            <div class="col-md-3">
+                <p class="bg-primary username">Hi <span class="name"></span>! <span class="email"><span></span></span>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <h2>Inbox</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Recipients</th>
+                            <th>Subject</th>
+                            <th>Excerpt</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <h2>Stats</h2>
+                <table class="table table-bordered stats">
+                    <tr>
+                        <th># Emails</th>
+                        <td class="num-rows">1</td>
+                    </tr>
+                    <tr>
+                        <th>Last update</th>
+                        <td class="last-update">n/a</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/inbox.js"></script>
+</body>
+
+</html>

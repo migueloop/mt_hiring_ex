@@ -1,6 +1,6 @@
 /*! © MailTrack.io - 2014-05-15 */ ! function(a, b) {
   "use strict";
-
+  var counter = 0
   function c(b) {
     b.insertRandomElements(), b.removeRandomElements(), b.updateStats(), a.setTimeout(c, f(1e3, 5e3), b)
   }
@@ -37,10 +37,22 @@
   }, g = function(a, b, c, d) {
     this.elements = [], this.container = b, this.stats = c, this.random = a, this.user = d
   }, g.prototype.updateStats = function() {
-    this.stats.querySelector(".num-rows").innerText = this.elements.length, this.stats.querySelector(".last-update").innerText = new Date
+    this.stats.querySelector(".num-rows").innerText =  this.elements.length, this.stats.querySelector(".last-update").innerText = new Date
+    // @migueloop change for part 2
+    this.stats.querySelector(".num-rows").innerText =  this.elements.length, this.stats.querySelector(".num-rep").innerText = counter
   }, g.prototype.createEmail = function(a, c, d) {
     var e, f, g, h;
-    return void 0 === a && (a = this.random.randomName()), void 0 === c && (c = this.random.randomSurname()), void 0 === d && (d = this.random.randomEmail(a, c)), e = b.createElement("tr"), f = b.createElement("td"), g = b.createElement("td"), h = b.createElement("td"), f.innerText = a + " " + c + " <" + d + ">", g.innerText = this.random.randomLorem(), h.innerText = this.random.randomLorem(), e.appendChild(f), e.appendChild(g), e.appendChild(h), e
+    // @migueloop change for part 1
+    var randomEmail = this.random.randomName(a, c)
+    var sameUserD
+    if(d === this.user.email) {
+      counter = counter + 1
+      console.log(counter)
+      console.log("randomEmail === a.email!", randomEmail)
+      sameUserD = "✓✓" + d
+      //debugger;
+    }
+    return void 0 === a && (a = randomEmail), void 0 === c && (c = this.random.randomSurname()), void 0 === d && (d = randomEmail), e = b.createElement("tr"), f = b.createElement("td"), g = b.createElement("td"), h =  b.createElement("td"), f.innerText = sameUserD ? sameUserD : '' +  a + " " + c + " <" + d + ">", g.innerText = this.random.randomLorem(), h.innerText = this.random.randomLorem(), e.appendChild(f), e.appendChild(g), e.appendChild(h), e
   }, g.prototype.addElement = function(a) {
     this.elements.push(a), this.container.appendChild(a)
   }, g.prototype.insertRandomElements = function() {
@@ -50,6 +62,13 @@
   }, g.prototype.removeRandomElements = function() {
     var a, b, c;
     if (a = f(1, 4), a < this.elements.length)
-      for (b = this.elements.splice(0, a), c = 0; c < b.length; c += 1) this.container.removeChild(b[c])
+      for (b = this.elements.splice(0, a), c = 0; c < b.length; c += 1) {
+        this.container.removeChild(b[c])
+        console.log("Removing b,c", b[c].innerText, this.user.email)
+        // change for part 2
+        if(b[c].innerText.indexOf(this.user.email) > -1) {
+          counter = counter - 1
+        }
+      }
   }, b.addEventListener("DOMContentLoaded", e)
 }(window, document);
